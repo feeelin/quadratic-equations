@@ -1,5 +1,6 @@
 from tkinter import *
 import math as m
+from tkinter import StringVar
 
 window = Tk()
 window.title('Решение квадратных уравнений')
@@ -7,12 +8,23 @@ window.geometry('250x100')
 
 
 def solution():
-    d = (b.get() ** 2) - (4 * a.get() * c.get())
+    try:
+        a_test = int(a.get())
+        b_test = int(b.get())
+        c_test = int(c.get())
+    except:
+        x1_label_text.set('Error')
+        x1_output.set('Invalid Input')
+        x2_label_text.set('')
+        x2_output.set('')
+        return ''
+    d = (int(b.get()) ** 2) - (4 * int(a.get()) * int(c.get()))
     if d >= 0:
         x1_label_text.set('x1=')
-        x1_output.set(str((-(b.get()) + m.sqrt(d)) / (2 * a.get())))
+        x1_output.set(str((-(int(b.get())) + m.sqrt(d)) / (2 * int(a.get()))))
         x2_label_text.set('x2=')
-        x2_output.set(str((-(b.get()) - m.sqrt(d)) / (2 * a.get())))
+        x2_output.set(str((-(int(b.get())) - m.sqrt(d)) / (2 * int(a.get()))))
+        print(a.get())
     else:
         x1_label_text.set('Error')
         x1_output.set('D<0')
@@ -20,22 +32,21 @@ def solution():
         x2_output.set('')
 
 
-
-a = IntVar()
+a = StringVar()
 a_enter = Entry(window, textvariable=a, width=5)
 a_enter.grid(row=1, column=0)
 
 a_label = Label(window, text='x^2+')
 a_label.grid(row=1, column=1, )
 
-b = IntVar()
+b = StringVar()
 b_enter = Entry(window, textvariable=b, width=5)
 b_enter.grid(row=1, column=2)
 
 b_label = Label(window, text='x+')
 b_label.grid(row=1, column=3)
 
-c = IntVar()
+c = StringVar()
 c_enter = Entry(window, textvariable=c, width=5)
 c_enter.grid(row=1, column=4)
 
@@ -45,7 +56,7 @@ free_label.grid(row=1, column=5)
 enter_button = Button(text='Решить', command=solution, width=7)
 enter_button.grid(row=1, column=6, padx=10)
 
-x1_label_text = StringVar()
+x1_label_text: StringVar = StringVar()
 x1_label = Label(window, textvariable=x1_label_text)
 x1_label.grid(row=2, column=0)
 
