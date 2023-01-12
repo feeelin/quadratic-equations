@@ -3,4 +3,4 @@
 You enter the equation - program taking you solution.
 
 <i>P.S. Working only with positive discriminants. 
-And I now, interface is not so cool -_-
+And I know that interface is not so cool -_-
